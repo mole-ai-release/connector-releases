@@ -17,6 +17,24 @@ Available for:
 - **Linux** (amd64, arm64)
 - **macOS** (amd64, arm64 — Intel & Apple Silicon)
 
+## Antivirus notice
+
+Windows Defender and some antivirus software may flag `tally-connector-windows-amd64.exe` as suspicious. This is a **false positive** — the connector is safe, but because it's a new, unsigned executable that makes outbound network connections, heuristic scanners err on the side of caution.
+
+**Why it happens:**
+- The `.exe` is not code-signed (EV certification is planned)
+- The app polls a cloud server over HTTPS (heuristic scanners flag this as "beaconing")
+- Go binaries bundle their own runtime, which looks different from typical Windows apps
+
+**How to fix it:**
+
+1. **Windows Defender SmartScreen** — Click "More info" → "Run anyway" when the SmartScreen popup appears
+2. **Microsoft Defender** — Go to **Windows Security → Virus & threat protection → Protection history**, find the blocked item, and select **Allow**
+3. **Other antivirus** — Add `tally-connector-windows-amd64.exe` to your antivirus exclusion list
+4. **Browser download block** — In Chrome/Edge, click the download bar and select "Keep" or "Keep anyway"
+
+The connector is open-source and the source code is available for audit at [mole-ai-release/MoleAI-connector](https://github.com/mole-ai-release/MoleAI-connector).
+
 ## Setup (first time)
 
 1. **Double-click** `tally-connector-windows-amd64.exe`
